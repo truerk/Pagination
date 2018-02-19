@@ -26,7 +26,7 @@
   <div class="task-main">
     <div class="task-content">
       <div class="task-header">
-        <input id="task_name" name="task_name" type="text" placeholder="Наименование">
+        <input class="add-input" id="task_name" name="task_name" type="text" placeholder="Наименование">
         <button id="btn_add" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>  
       </div>      
 
@@ -36,7 +36,8 @@
         <?php if ($task_count > 0) { 
           foreach ($task as $tsk) : ?>
             <div class="task-container" id="<?=$tsk['task_id']?>">
-              <label><?=$tsk['task_name']?></label>
+              <!--<label class="task-label"><?=$tsk['task_name']?></label>-->
+              <input type="text" class="task-label" value="<?=$tsk['task_name']?>" readonly>
               <button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>
               <button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
             </div>
@@ -46,7 +47,6 @@
       </div>
     </div>
   </div>
-
 
 <script src="js/jquery.js"></script>
 <script type="text/javascript">
@@ -63,6 +63,27 @@
       }
     }
     check_list();
+
+    /* ---- редактирование ---- */
+    function add_update(){
+      $('.update').on('click', function(){
+        var container_id = this.parentNode.id;
+        var task_value_old = $('#' + container_id + ' input').val();
+        $('#' + container_id + ' input.task-label').remove();
+        $('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>');
+        
+        $('#' + container_id + ' input').focus();
+        $('#' + container_id + ' input.task-update').blur(function(){
+          var task_value_new = $('#' + container_id + ' input.task-update').val();
+          $('#' + container_id + ' input.task-update').remove();
+          $('#' + container_id).prepend('<input type="text" class="task-label" value='+task_value_new+' readonly>');
+        });
+      });
+
+      //$('#inputId').prop('readonly', true);
+    }
+    add_update();
+    
 
     /* -- удаление тасок --- */
     function add_delete(){
@@ -106,12 +127,13 @@
           if (json.result == '1') {
             alert('Вы не заполнили название');
           }else if(json.result == '2'){
-            task_body.append('<div class="task-container" id='+ json.id +'><label>' + task_name + '</label>' + 
+            task_body.append('<div class="task-container" id='+ json.id +'><input type="text" class="task-label" value="' + task_name + '" readonly>' + 
             '<button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
             '<button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button></div>');
             check_list();
             $('#' + json.id).css("animation", "task_add 1s ease-in-out");
-            add_delete();          
+            add_delete();
+            add_update();          
           }
         },
         error: function(){

@@ -1,0 +1,216 @@
+/* --------- Главные настройки --------- */
+@font-face{
+    font-family: 'Nunito';
+    src: url('NunitoSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Nunito';
+    src: url('NunitoSans-SemiBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Nunito';
+    src: url('NunitoSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+body{
+  font-size: 13px;    
+  background: #F9F9F9;
+  padding: 0;
+  margin: 0;
+}
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+}
+li{
+  text-decoration: none;
+  list-style: none;
+}
+button{
+  outline: none;
+}
+button:active{
+  outline: none;
+}
+html { 
+ position:relative; 
+ min-height:100%;
+}
+
+/* ----------- общие --------- */
+
+.task-main{
+  margin-top: 100px;
+}
+.task-content{
+  max-width: 600px;
+  min-height: 600px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* ---- добавление ----- */
+.task-header{
+  display: flex;  
+  width: 100%;
+  height: 50px;    
+}
+.task-header input{
+  width: 100%;
+  border: none;
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid #8FCF4A;
+  outline: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; 
+  border-right: none;
+  color: #505050;
+}
+.task-header input:focus{
+  border: 1px solid #59B038;
+  border-right: none;
+}
+.task-header .add{
+  width: 50px;
+  font-size: 15px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(to top, #59B038, #8FCF4A);  
+  transition: 0.2s ease-in-out;
+}
+.task-header .add:hover{
+  cursor: pointer;
+  box-shadow: inset 0px 0px 15px 0px #59B038;
+}
+.task-header .add:active{
+  box-shadow: inset 0px 0px 15px 0px #40971F;
+}
+
+/* ---- вывод ---- */
+
+.task-body{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.task-body .task-container{
+  width: 100%;
+}
+.task-container{
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  text-overflow: ellipsis;
+  margin-top: 30px;
+  transition: all 0.5s ease-in-out;
+}
+.task-container label{
+  width: 100%;
+  word-break: break-all;
+  overflow: hidden;
+  padding: 5px;  
+  border: 1px solid #78AFDA;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-right: none;
+  color: #505050;  
+}
+.task-container .delete{
+  width: 50px;
+  font-size: 15px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(to top, #C5452D, #EB6B51);
+  transition: 0.2s ease-in-out;
+}
+.task-container .delete:hover{
+  cursor: pointer;
+  box-shadow: inset 0px 0px 15px 0px #C5452D;
+}
+.task-container .delete:active{
+  box-shadow: inset 0px 0px 15px 0px #AD2D15;
+}
+.task-container .update{
+  width: 50px;
+  font-size: 15px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(to top, #448ECC, #78AFDA);
+  transition: 0.2s ease-in-out;
+}
+.task-container .update:hover{
+  cursor: pointer;
+  box-shadow: inset 0px 0px 15px 0px #448ECC;
+  
+}
+.task-container .update:active{
+  box-shadow: inset 0px 0px 15px 0px #256FAD;
+}
+
+.task_null{
+  width: 100%;
+  text-align: center;
+  color: #906060;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 30px;
+  animation: null 1s ease-in-out;
+}
+
+@keyframes null{
+  from {
+    margin-top: 15px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes task_add {
+  from {
+    margin-top: 0px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes task_delete {
+  from {
+    position: relative;
+    top: 0px;
+    opacity: 1;
+  }
+  to {
+    position: relative;
+    top: -30px;
+    opacity: 0;
+  }
+}
+
+

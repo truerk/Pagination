@@ -69,9 +69,21 @@
       $('.update').on('click', function(){
 
         var container_id = this.parentNode.id;
-        var task_value_old = $('#' + container_id + ' input').val();
+        
+        $('#' + container_id + ' input.task-label').attr('readonly', false);
+        
 
-        $('#' + container_id + ' input.task-label').remove();
+        $('#' + container_id + ' input.task-label').focus();
+
+        $('#' + container_id + ' input.task-label').blur(function(){
+          $('#' + container_id + ' input.task-label').attr('readonly', true);
+        });
+
+        //var task_value_old = $('#' + container_id + ' input.task-label').val();
+
+
+
+        /*$('#' + container_id + ' input.task-label').remove();
         $('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>');
         
         $('#' + container_id + ' input').focus();
@@ -80,7 +92,7 @@
           var task_value_new = $('#' + container_id + ' input.task-update').val();
           $('#' + container_id + ' input.task-update').remove();
           $('#' + container_id).prepend('<input type="text" class="task-label" value='+task_value_new+' readonly>');
-        });
+        });*/
       });
 
       //$('#inputId').prop('readonly', true);
@@ -139,21 +151,26 @@
             add_delete();
              
 
+
+
             /* --- добавляем редактирование ---- */
             $('#'+ json.id +' .update').on('click', function(){
-
               var container_id = json.id;
-              var task_value_old = $('#' + container_id + ' input').val();
+              $('#' + container_id + ' input.task-label').attr('readonly', false);
+              $('#' + container_id + ' input.task-label').focus();
+              $('#' + container_id + ' input.task-label').blur(function(){
+                $('#' + container_id + ' input.task-label').attr('readonly', true);
+              });
 
+              /*var task_value_old = $('#' + container_id + ' input').val();
               $('#' + container_id + ' input.task-label').remove();
-              $('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>');
-              
+              $('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>');              
               $('#' + container_id + ' input').focus();
               $('#' + container_id + ' input.task-update').blur(function(){
                 var task_value_new = $('#' + container_id + ' input.task-update').val();
                 $('#' + container_id + ' input.task-update').remove();
                 $('#' + container_id).prepend('<input type="text" class="task-label" value='+task_value_new+' readonly>');
-              });
+              });*/
             });
           }
         },

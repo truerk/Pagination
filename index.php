@@ -69,33 +69,57 @@
       $('.update').on('click', function(){
 
         var container_id = this.parentNode.id;
-        
+        var task_value_old = $('#' + container_id + ' input.task-label').val();   
         $('#' + container_id + ' input.task-label').attr('readonly', false);
-        
-
         $('#' + container_id + ' input.task-label').focus();
 
         $('#' + container_id + ' input.task-label').blur(function(){
-          $('#' + container_id + ' input.task-label').attr('readonly', true);
+
+          /* -- фича от повторного блюра -- */
+          if ($('#' + container_id + ' input.task-label').attr('readonly')) {
+            //alert('Повторный блюр');
+            return false;
+          }
+          var task_value_new = $('#' + container_id + ' input.task-label').val();
+          /* --- фича от одного и того же названия -- */
+          if (task_value_old == task_value_new) {
+            //alert('одно и то же');
+            $('#' + container_id + ' input.task-label').attr('readonly', true);
+            return false;
+          }
+
+          if (task_value_new == '') {
+            $('#' + container_id + ' input.task-label').val(task_value_old);
+            $('#' + container_id + ' input.task-label').attr('readonly', true);
+            return false;
+          }
+
+          /* ------ тупил здесь тк не посылал имя и проверял на пустоту вечно айдишник а не имя, завтра доделать!!!!!!!!!!!!!!!!!!!!! --*/
+          $.ajax({
+            type: 'POST',
+            url: 'task_update.php',
+            data: {task_id: container_id, task_name:},
+            success: function(result){
+              var json = $.parseJSON(result);
+              //alert(json.result);
+              $('#' + container_id + ' input.task-label').val(json.result);
+              $('#' + container_id + ' input.task-label').attr('readonly', true);
+            },
+            error: function(){
+              alert('Что то не получилось');
+              $('#' + container_id + ' input.task-label').val(task_value_old);
+              $('#' + container_id + ' input.task-label').attr('readonly', true);
+            }
+          });
+          
+          //$('#' + container_id + ' input.task-label').attr('readonly', true);
+
+
         });
-
         //var task_value_old = $('#' + container_id + ' input.task-label').val();
-
-
-
-        /*$('#' + container_id + ' input.task-label').remove();
-        $('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>');
-        
-        $('#' + container_id + ' input').focus();
-        //alert('проверка ' + task_value_old);
-        $('#' + container_id + ' input.task-update').blur(function(){
-          var task_value_new = $('#' + container_id + ' input.task-update').val();
-          $('#' + container_id + ' input.task-update').remove();
-          $('#' + container_id).prepend('<input type="text" class="task-label" value='+task_value_new+' readonly>');
-        });*/
+        //$('#' + container_id + ' input.task-label').remove();
+        //$('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>'); 
       });
-
-      //$('#inputId').prop('readonly', true);
     }
     add_update();
     
@@ -149,9 +173,6 @@
             $('#task_name').val('');
             $('#' + json.id).css("animation", "task_add 1s ease-in-out");
             add_delete();
-             
-
-
 
             /* --- добавляем редактирование ---- */
             $('#'+ json.id +' .update').on('click', function(){
@@ -159,18 +180,13 @@
               $('#' + container_id + ' input.task-label').attr('readonly', false);
               $('#' + container_id + ' input.task-label').focus();
               $('#' + container_id + ' input.task-label').blur(function(){
-                $('#' + container_id + ' input.task-label').attr('readonly', true);
-              });
 
-              /*var task_value_old = $('#' + container_id + ' input').val();
-              $('#' + container_id + ' input.task-label').remove();
-              $('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>');              
-              $('#' + container_id + ' input').focus();
-              $('#' + container_id + ' input.task-update').blur(function(){
-                var task_value_new = $('#' + container_id + ' input.task-update').val();
-                $('#' + container_id + ' input.task-update').remove();
-                $('#' + container_id).prepend('<input type="text" class="task-label" value='+task_value_new+' readonly>');
-              });*/
+
+                var a = confirm("проверочка");
+                //alert(a);
+                $('#' + container_id + ' input.task-label').attr('readonly', true);
+
+              });
             });
           }
         },

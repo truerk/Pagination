@@ -242,7 +242,68 @@
 
             /* --- добавляем редактирование ---- */
             $('#'+ json.id +' .update').on('click', function(){
+
               var container_id = json.id;
+              var task_value_old = $('#' + json.id + ' textarea').text();
+
+              $('#' + container_id + ' textarea').removeClass('task-label').addClass('task-update');
+              $('#' + container_id + ' textarea').attr('readonly', false);
+              $('#' + container_id + ' textarea').focus();
+
+              $('#' + container_id + ' textarea').blur(function(){
+
+                if ($('#' + container_id + ' textarea').attr('readonly')) {  
+                  return false;
+                }
+
+                var task_value_new = $('#' + container_id + ' textarea').val();
+
+                if (task_value_old == task_value_new) {                        
+                  $('#' + container_id + ' textarea').attr('readonly', true);
+                  $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+                  alert('одинаковые ' + json.id);
+                  return false;
+                }else if (task_value_new == '') {
+                  $('#' + container_id + ' textarea').val(task_value_old);
+                  $('#' + container_id + ' textarea').attr('readonly', true);
+                  $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+                  alert('пустое ' + json.id);
+                  return false;
+                }else{
+                  $.ajax({
+                    type: 'POST',
+                    url: 'task_update.php',
+                    data: {task_id: container_id, task_name:task_value_new},
+                    success: function(result){
+                      var json = $.parseJSON(result);
+                      $('#' + container_id + ' textarea').val(task_value_new);
+                      $('#' + container_id + ' textarea').text(task_value_new);
+                      alert(json.result);
+                      task_value_old = task_value_new;
+                      $('#' + container_id + ' textarea').attr('readonly', true);
+                      $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+                    },
+                    error: function(){
+                      alert('Что то не получилось');
+                      $('#' + container_id + ' textarea').val(task_value_old);
+                      $('#' + container_id + ' textarea').attr('readonly', true);
+                      $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+                    }
+                  });
+                }
+
+                /*$('#' + container_id + ' textarea').text(task_value_new);
+                $('#' + container_id + ' textarea').attr('readonly', true);
+                $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+                alert('Старое: ' + task_value_old + '; Новое: ' + task_value_new);
+                task_value_old = task_value_new;*/
+
+
+              });
+
+
+
+              /*var container_id = json.id;
               $('#' + container_id + ' input.task-label').attr('readonly', false);
               $('#' + container_id + ' input.task-label').focus();
               $('#' + container_id + ' input.task-label').blur(function(){
@@ -252,7 +313,8 @@
                 //alert(a);
                 $('#' + container_id + ' input.task-label').attr('readonly', true);
 
-              });
+              });*/
+
             });
           }
         },

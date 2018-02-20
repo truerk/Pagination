@@ -92,7 +92,7 @@
           if ($('#' + container_id + ' textarea').attr('readonly')) {   
             return false;
           }
-          
+
           var task_value_new = $('#' + container_id + ' textarea').val();
 
           if (task_value_old == task_value_new) {                        
@@ -107,14 +107,32 @@
             alert('пустое');
             return false;
           }else{
+            $.ajax({
+              type: 'POST',
+              url: 'task_update.php',
+              data: {task_id: container_id, task_name:task_value_new},
+              success: function(result){
+                var json = $.parseJSON(result);
+                $('#' + container_id + ' textarea').val(task_value_new);
+                $('#' + container_id + ' textarea').text(task_value_new);
+                alert(json.result);
+                task_value_old = task_value_new;
+                $('#' + container_id + ' textarea').attr('readonly', true);
+                $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+              },
+              error: function(){
+                alert('Что то не получилось');
+                $('#' + container_id + ' textarea').val(task_value_old);
+                $('#' + container_id + ' textarea').attr('readonly', true);
+                $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+              }
+            });
 
 
-
-
-            $('#' + container_id + ' textarea').text(task_value_new);
+            /*$('#' + container_id + ' textarea').text(task_value_new);
             task_value_old = task_value_new;
             $('#' + container_id + ' textarea').attr('readonly', true);
-            $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+            $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');*/
             
 
 

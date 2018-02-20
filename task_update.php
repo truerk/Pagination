@@ -11,11 +11,16 @@
   /*echo json_encode(array('result' => 'Типо обновили'));
   exit();*/
 
-  $task_id = htmlspecialchars(trim($_POST['task_id']));
-
-  
-  echo json_encode(array('result' => $task_id));
+  if (empty($_POST['task_id']) or empty($_POST['task_name'])) {
+    echo json_encode(array('result' => 'Пустые данные'));
     exit();
+  }
+
+  $task_id = htmlspecialchars(trim($_POST['task_id']));
+  $task_name = htmlspecialchars(trim($_POST['task_name']));
+  
+  echo json_encode(array('result' => 'id: '.$task_id.'; name: '.$task_name));
+  exit();
   /*$task_id = htmlspecialchars(trim($_POST['task_id']));
 
   $query = $db->prepare('delete from task where task_id=:task_id');

@@ -52,6 +52,8 @@ html {
 
 .task-main{
   margin-top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .task-content{
   max-width: 600px;
@@ -197,6 +199,45 @@ html {
   margin-top: 30px;
   animation: null 1s ease-in-out;
 }
+
+/* ---- пагинация ---- */
+
+.task-page-container{
+  display: flex;
+  justify-content: center;
+}
+.task-page-content{
+  width: 600px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;+
+}
+.task-page-content a{
+  margin-left: 15px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 15px 0px #448ECC;
+  background-color: #78AFDA;
+  color: #fff;
+}
+.task-page-content a:active{
+  box-shadow: inset 0px 0px 15px 0px #256FAD;
+}
+
+.task-page-content span{
+  margin-left: 15px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: #448ECC;
+  color: #fff;
+}
+.task-page-content a:hover, span:hover{
+  background-color: #448ECC;
+  cursor: pointer;
+}
+
+
 
 @keyframes null{
   from {

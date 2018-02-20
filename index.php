@@ -8,9 +8,9 @@
       echo "Ошибка подключения: ".$e->getMessage();
   }
 
-  $page_size = 5;
+  $page_size = 6;
 
-  echo 'Размер страницы '.$page_size.'<br>';
+  
 
   if (isset($_GET['page'])) {
     $page_nom_query = $page_size * $_GET['page'];
@@ -20,7 +20,7 @@
     $page_nom = 1;
   }  
 
-  $query = $db->prepare('select * from task limit '.$page_nom_query.','.$page_size);
+  $query = $db->prepare('select * from task order by task_id asc limit '.$page_nom_query.','.$page_size.'');
   //$query = $db->prepare('select * from task');
   $query->execute();  
   $task = $query->fetchALL();
@@ -32,27 +32,24 @@
   $page_nom1 = $page_nom + 1;
 
   $page_count = ceil($task_count/$page_size);
+
+  /*echo 'Размер страницы '.$page_size.'<br>';
   echo 'количество тасок '.$task_count.'<br>';
   echo 'количество страниц '.$page_count.'<br>';
   echo 'Страница '.$page_nom1.'<br>';
-  echo 'выводить с '.$page_nom_query.' записи '.$page_size.' записей <br>';
+  echo 'выводить с '.$page_nom_query.' записи '.$page_size.' записей <br>';*/
 
-  echo "<br>";
 
-  ?>
-
-  <?
-  for ($i=1; $i < $page_count+1; $i++) { 
+  /*for ($i=1; $i < $page_count+1; $i++) { 
     if ($i - 1 == $page_nom) { 
       echo "<span>$i</span>";
     }else{ 
-      $a = $i - 1;
-      ?>
+      $a = $i - 1; ?>
 
-      <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$a?>'><?=$i?></a>
+      <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$a?>' disabled><?=$i?></a>
 
    <? } 
-  }
+  }*/
 
 
 ?>
@@ -74,7 +71,7 @@
       </div>      
 
       <div class="task-body">
-        <div class="task_null">Задач еще нету</div>
+        <div class="task_null">На этой страничке кончились задачки:)</div>
 
         <?php /*if ($task_count > 0) {*/ 
           foreach ($task as $tsk) : ?>
@@ -86,9 +83,19 @@
               <button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
             </div>
 
-        <?php endforeach; /*}*/ ?>
-
+        <?php endforeach; /*}*/ ?>         
       </div>
+    </div>
+    <div class="task-page-container">
+      <div class="task-page-content">
+        <? for ($i=1; $i < $page_count+1; $i++) { 
+            if ($i - 1 == $page_nom) { 
+              echo "<span>$i</span>";
+            }else{ 
+              $a = $i - 1; ?>
+              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$a?>' disabled><?=$i?></a>
+           <? } } ?>
+      </div>          
     </div>
   </div>
 

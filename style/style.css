@@ -126,7 +126,7 @@ html {
 .task-container .task-label{
   width: 100%;
   word-break: break-all;
-  overflow: hidden;
+  /*overflow: hidden;*/
   padding: 5px;  
   border: 1px solid #78AFDA;
   border-top-left-radius: 5px;

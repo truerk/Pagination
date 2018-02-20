@@ -37,7 +37,8 @@
           foreach ($task as $tsk) : ?>
             <div class="task-container" id="<?=$tsk['task_id']?>">
               <!--<label class="task-label"><?=$tsk['task_name']?></label>-->
-              <input type="text" class="task-label" value="<?=$tsk['task_name']?>" readonly>
+              <!--<input type="text" class="task-label" value="<?=$tsk['task_name']?>" readonly>-->
+              <textarea class="task-label" readonly><?=$tsk['task_name']?></textarea>
               <button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>
               <button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
             </div>
@@ -45,7 +46,7 @@
         <?php endforeach; /*}*/ ?>
             <div class="task-container" id="<?=$tsk['task_id']?>">
               <!--<label class="task-label"><?=$tsk['task_name']?></label>-->
-              <textarea class="task-label" readonly>11111111111111111111 222222222222222222 333333333333333333333 444444444444444444 55555555555555555</textarea>
+              <textarea class="task-label" readonly>тест 222222222222222222 333333333333333333333 444444444444444444 55555555555555555</textarea>
               <!--<input type="text" class="task-label" value="ккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккк" readonly>-->
               <button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>
               <button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
@@ -74,34 +75,74 @@
     function add_update(){
       $('.update').on('click', function(){
 
-        var container_id = this.parentNode.id;
+        /*var container_id = this.parentNode.id;
         var task_value_old = $('#' + container_id + ' input.task-label').val();   
         $('#' + container_id + ' input.task-label').attr('readonly', false);
-        $('#' + container_id + ' input.task-label').focus();
+        $('#' + container_id + ' input.task-label').focus();*/
 
-        $('#' + container_id + ' input.task-label').blur(function(){
+        var container_id = this.parentNode.id;
+        var task_value_old = $('#' + container_id + ' textarea').text();
 
-          /* -- фича от повторного блюра -- */
-          if ($('#' + container_id + ' input.task-label').attr('readonly')) {
-            //alert('Повторный блюр');
+        $('#' + container_id + ' textarea').removeClass('task-label').addClass('task-update');
+        $('#' + container_id + ' textarea').attr('readonly', false);
+        $('#' + container_id + ' textarea').focus();
+
+        $('#' + container_id + ' textarea').blur(function(){
+
+          if ($('#' + container_id + ' textarea').attr('readonly')) {   
             return false;
           }
-          var task_value_new = $('#' + container_id + ' input.task-label').val();
-          /* --- фича от одного и того же названия -- */
-          if (task_value_old == task_value_new) {
-            //alert('одно и то же');
+          
+          var task_value_new = $('#' + container_id + ' textarea').val();
+
+          if (task_value_old == task_value_new) {                        
+            $('#' + container_id + ' textarea').attr('readonly', true);
+            $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+            alert('одинаковые');
+            return false;
+          }else if (task_value_new == '') {
+            $('#' + container_id + ' textarea').val(task_value_old);
+            $('#' + container_id + ' textarea').attr('readonly', true);
+            $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+            alert('пустое');
+            return false;
+          }else{
+
+
+
+
+            $('#' + container_id + ' textarea').text(task_value_new);
+            task_value_old = task_value_new;
+            $('#' + container_id + ' textarea').attr('readonly', true);
+            $('#' + container_id + ' textarea').removeClass('task-update').addClass('task-label');
+            
+
+
+          }
+
+          
+          
+
+
+          //alert('Старое: ' + task_value_old + '; Новое: ' + task_value_new);
+
+
+          /*if ($('#' + container_id + ' input.task-label').attr('readonly')) {            
+            return false;
+          }
+          var task_value_new = $('#' + container_id + ' input.task-label').val();          
+          if (task_value_old == task_value_new) {            
             $('#' + container_id + ' input.task-label').attr('readonly', true);
             return false;
           }
-
           if (task_value_new == '') {
             $('#' + container_id + ' input.task-label').val(task_value_old);
             $('#' + container_id + ' input.task-label').attr('readonly', true);
             return false;
-          }
+          }*/
 
-          /* ------ тупил здесь тк не посылал имя и проверял на пустоту вечно айдишник а не имя, завтра доделать!!!!!!!!!!!!!!!!!!!!! --*/
-          $.ajax({
+          
+          /*$.ajax({
             type: 'POST',
             url: 'task_update.php',
             data: {task_id: container_id, task_name:task_value_new},
@@ -116,7 +157,7 @@
               $('#' + container_id + ' input.task-label').val(task_value_old);
               $('#' + container_id + ' input.task-label').attr('readonly', true);
             }
-          });
+          });*/
           
           //$('#' + container_id + ' input.task-label').attr('readonly', true);
 
@@ -173,7 +214,7 @@
           if (json.result == '1') {
             alert('Вы не заполнили название');
           }else if(json.result == '2'){
-            task_body.append('<div class="task-container" id='+ json.id +'><input type="text" class="task-label" value="' + task_name + '" readonly>' + 
+            task_body.append('<div class="task-container" id='+ json.id +'><textarea class="task-label" readonly>' + task_name + '</textarea>' + 
             '<button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
             '<button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button></div>');
             check_list();
@@ -203,7 +244,21 @@
       });
     });
 
+    /* ----- комментари для js ------------
+
+    task_body.append('<div class="task-container" id='+ json.id +'><input type="text" class="task-label" value="' + task_name + '" readonly><textarea class="task-label" readonly>' + task_name + '</textarea>' + 
+    '<button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +
+    '<button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button></div>');
+
+    //$("p").removeClass("myClass noClass").addClass("yourClass");
+    //var task_value_old = $('#' + container_id + ' input.task-label').val();
+    //$('#' + container_id + ' input.task-label').remove();
+    //$('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>'); 
+
+    */
+
   });
 </script>
 </body>
 </html>
+

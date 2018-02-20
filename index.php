@@ -33,7 +33,7 @@
       <div class="task-body">
         <div class="task_null">Задач еще нету</div>
 
-        <?php if ($task_count > 0) { 
+        <?php /*if ($task_count > 0) {*/ 
           foreach ($task as $tsk) : ?>
             <div class="task-container" id="<?=$tsk['task_id']?>">
               <!--<label class="task-label"><?=$tsk['task_name']?></label>-->
@@ -42,8 +42,14 @@
               <button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
             </div>
 
-        <?php endforeach; } ?>
-
+        <?php endforeach; /*}*/ ?>
+            <div class="task-container" id="<?=$tsk['task_id']?>">
+              <!--<label class="task-label"><?=$tsk['task_name']?></label>-->
+              <textarea class="task-label" readonly>11111111111111111111 222222222222222222 333333333333333333333 444444444444444444 55555555555555555</textarea>
+              <!--<input type="text" class="task-label" value="ккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккккк" readonly>-->
+              <button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="delete"><i class="fa fa-minus" aria-hidden="true"></i></button>
+            </div>
       </div>
     </div>
   </div>
@@ -98,7 +104,7 @@
           $.ajax({
             type: 'POST',
             url: 'task_update.php',
-            data: {task_id: container_id, task_name:},
+            data: {task_id: container_id, task_name:task_value_new},
             success: function(result){
               var json = $.parseJSON(result);
               //alert(json.result);
@@ -116,6 +122,7 @@
 
 
         });
+        //$("p").removeClass("myClass noClass").addClass("yourClass");
         //var task_value_old = $('#' + container_id + ' input.task-label').val();
         //$('#' + container_id + ' input.task-label').remove();
         //$('#' + container_id).prepend('<input type="text" class="task-update" value='+task_value_old+'>'); 
@@ -127,7 +134,7 @@
     /* -- удаление тасок --- */
     function add_delete(){
       $('.delete').on('click', function(){
-        var containter = $(this).parent();//attr('id')
+        var containter = $(this).parent();//attr('id')//получаем род контейнер
         var task_id = this.parentNode.id;
         $.ajax({
           type: 'POST',
@@ -182,7 +189,7 @@
               $('#' + container_id + ' input.task-label').blur(function(){
 
 
-                var a = confirm("проверочка");
+                //var a = confirm("проверочка");
                 //alert(a);
                 $('#' + container_id + ' input.task-label').attr('readonly', true);
 

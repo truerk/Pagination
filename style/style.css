@@ -133,8 +133,14 @@ html {
   border-bottom-left-radius: 5px;
   border-right: none;
   color: #505050;
-  order: 0;    
+  order: 0;
+  resize: none;
 }
+
+.task-label:focus{
+  outline: none;
+}
+
 .task-update{
   width: 100%;
   word-break: break-all;
@@ -145,7 +151,8 @@ html {
   border-bottom-left-radius: 5px;
   border-right: none;
   color: #505050;
-  order: 0;  
+  order: 0;
+  resize: none;  
 }
 .task-container .delete{
   width: 50px;
@@ -223,6 +230,14 @@ html {
     position: relative;
     top: -30px;
     opacity: 0;
+  }
+}
+
+/* ----- адаптив ----- */
+
+@media screen and (max-width: 768px){
+  .task-container .task-label{    
+    overflow-y: scroll;
   }
 }
 

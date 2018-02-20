@@ -8,10 +8,53 @@
       echo "Ошибка подключения: ".$e->getMessage();
   }
 
-  $query = $db->prepare('select * from task');
-  $query->execute();
-  $task_count = $query->rowCount();
-  $task = $query->fetchALL();  
+  $page_size = 5;
+
+  echo 'Размер страницы '.$page_size.'<br>';
+
+  if (isset($_GET['page'])) {
+    $page_nom_query = $page_size * $_GET['page'];
+    $page_nom = $_GET['page'];
+  }else{
+    $page_nom_query = 0;
+    $page_nom = 1;
+  }  
+
+  $query = $db->prepare('select * from task limit '.$page_nom_query.','.$page_size);
+  //$query = $db->prepare('select * from task');
+  $query->execute();  
+  $task = $query->fetchALL();
+
+  $query1 = $db->prepare('select * from task');
+  $query1->execute();
+  $task_count = $query1->rowCount();
+
+  $page_nom1 = $page_nom + 1;
+
+  $page_count = ceil($task_count/$page_size);
+  echo 'количество тасок '.$task_count.'<br>';
+  echo 'количество страниц '.$page_count.'<br>';
+  echo 'Страница '.$page_nom1.'<br>';
+  echo 'выводить с '.$page_nom_query.' записи '.$page_size.' записей <br>';
+
+  echo "<br>";
+
+  ?>
+
+  <?
+  for ($i=1; $i < $page_count+1; $i++) { 
+    if ($i - 1 == $page_nom) { 
+      echo "<span>$i</span>";
+    }else{ 
+      $a = $i - 1;
+      ?>
+
+      <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$a?>'><?=$i?></a>
+
+   <? } 
+  }
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,7 +87,7 @@
             </div>
 
         <?php endforeach; /*}*/ ?>
-        
+
       </div>
     </div>
   </div>
@@ -172,7 +215,8 @@
         success: function(response){
           var json = $.parseJSON(response);
           if (json.result == '1') {
-            alert('Вы не заполнили название');
+            //alert('Вы не заполнили название');
+            return false;
           }else if(json.result == '2'){
             task_body.append('<div class="task-container" id='+ json.id +'><textarea class="task-label" readonly>' + task_name + '</textarea>' + 
             '<button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +

@@ -7,29 +7,29 @@
       echo "Ошибка подключения: ".$e->getMessage();
   }
 
-
-  /*echo json_encode(array('result' => 'Типо обновили'));
-  exit();*/
-
   if (empty($_POST['task_id']) or empty($_POST['task_name'])) {
-    echo json_encode(array('result' => 'Пустые данные'));
+    echo json_encode(array('result' => '1'));
     exit();
   }
 
   $task_id = htmlspecialchars(trim($_POST['task_id']));
   $task_name = htmlspecialchars(trim($_POST['task_name']));
-  
-  echo json_encode(array('result' => 'id: '.$task_id.'; name: '.$task_name));
-  exit();
-  /*$task_id = htmlspecialchars(trim($_POST['task_id']));
 
-  $query = $db->prepare('delete from task where task_id=:task_id');
-  $query->execute(['task_id'=>$task_id]);
-  
+  if (empty($task_id) or empty($task_name)) {
+    echo json_encode(array('result' => '1'));
+    exit();
+  }
+
+  $query = $db->prepare('update task set task_name=:task_name where task_id=:task_id');
+  $query->execute(['task_id'=>$task_id, 'task_name'=>$task_name]);
+
   if ($query) {
     echo json_encode(array('result' => '2'));
     exit();
-  }*/
+  }else{
+    echo json_encode(array('result' => '3'));
+    exit();
+  }
 
 
 ?>

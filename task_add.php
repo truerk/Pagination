@@ -16,7 +16,7 @@
 
   $query = $db->prepare('insert into task set task_name=:task_name');
   $query->execute(['task_name'=>$task_name]);
-  $last_id = $db->lastInsertId();
+  $last_id = $db->lastInsertId();//добавленый id, чтоб потом вставить контейнер
   if ($query) {
     echo json_encode(array('result' => '2','id' => $last_id));
     exit();

@@ -211,7 +211,8 @@ html {
   background-color: #fff;
   display: flex;
   justify-content: center;
-  padding: 10px 0px;+
+  padding: 10px 0px;
+  flex-wrap: wrap;
 }
 .task-page-content a{
   margin-left: 15px;

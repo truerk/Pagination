@@ -3,56 +3,60 @@
   try{
       @ $db = new PDO("mysql:host=localhost;dbname=paginationTask","root","");
       $db->exec("set names utf8");
-      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);       
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $db->setAttribute( PDO::ATTR_EMULATE_PREPARES, false );  //для limit     
   }catch(PDOException $e){
       echo "Ошибка подключения: ".$e->getMessage();
   }
 
-  $page_size = 6;
+  $page_size = 6;  
 
-  
-
-  if (isset($_GET['page'])) {
-    $page_nom_query = $page_size * $_GET['page'];
-    $page_nom = $_GET['page'];
+  if (isset($_GET['page'])) {    
+    if (!preg_match('/^\+?\d+$/', $_GET['page']) or $_GET['page'] == '0') {
+      $page_nom_query = 0;
+      $page_nom = 1;
+    }else{
+      $page_nom_query = $page_size * (htmlspecialchars(trim($_GET['page'])) - 1);
+      $page_nom = $_GET['page'];      
+    }    
   }else{
     $page_nom_query = 0;
     $page_nom = 1;
-  }  
-
-  $query = $db->prepare('select * from task order by task_id asc limit '.$page_nom_query.','.$page_size.'');
-  //$query = $db->prepare('select * from task');
-  $query->execute();  
-  $task = $query->fetchALL();
+  }
 
   $query1 = $db->prepare('select * from task');
   $query1->execute();
   $task_count = $query1->rowCount();
 
-  $page_nom1 = $page_nom + 1;
-
   $page_count = ceil($task_count/$page_size);
 
-  /*echo 'Размер страницы '.$page_size.'<br>';
-  echo 'количество тасок '.$task_count.'<br>';
-  echo 'количество страниц '.$page_count.'<br>';
-  echo 'Страница '.$page_nom1.'<br>';
-  echo 'выводить с '.$page_nom_query.' записи '.$page_size.' записей <br>';*/
+  if (htmlspecialchars(trim($_GET['page'])) > $page_count) {
+    $page_nom_query = 0;
+    $page_nom = 1;
+  }
+  
+  $query = $db->prepare('select * from task order by task_id asc limit :page_nom_query, :page_size');
+  $query->execute(['page_nom_query'=>$page_nom_query, 'page_size'=>$page_size]);  
+  $task = $query->fetchALL();
 
+  ?>
 
-  /*for ($i=1; $i < $page_count+1; $i++) { 
-    if ($i - 1 == $page_nom) { 
+  <div class="task-page-content">
+
+  <?php
+
+  for ($i=1; $i < $page_count+1; $i++) {
+    if ($i == $page_nom) { 
       echo "<span>$i</span>";
     }else{ 
-      $a = $i - 1; ?>
-
+      $a = $i ; ?>
       <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$a?>' disabled><?=$i?></a>
+  <?php } 
+  } ?>
 
-   <? } 
-  }*/
+  </div>
 
-
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,11 +92,11 @@
     </div>
     <div class="task-page-container">
       <div class="task-page-content">
-        <? for ($i=1; $i < $page_count+1; $i++) { 
-            if ($i - 1 == $page_nom) { 
+        <? for ($i=1; $i < $page_count+1; $i++) {
+            if ($i  == $page_nom) { 
               echo "<span>$i</span>";
             }else{ 
-              $a = $i - 1; ?>
+              $a = $i; ?>
               <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$a?>' disabled><?=$i?></a>
            <? } } ?>
       </div>          

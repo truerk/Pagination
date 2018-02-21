@@ -304,6 +304,48 @@ html {
   }
 }
 
+
+/* ----- всплывающее добавление --- */ 
+.task-header-container{
+  margin-top:   10px;
+  height: 50px;
+  width: 100%;  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.add-content{
+  width: 100%;  
+  display: none;
+}
+.add-button{
+  
+}
+
+@keyframes add-content-open{
+  from {
+    margin-left: 500px;
+    opacity: 0;
+  }
+  to {
+    margin-left: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes add-content-close{
+  from {
+    margin-left: 0px;
+    opacity: 1;
+  }
+  to {
+    margin-left: 500px;
+    opacity: 0;
+  }
+}
+
+
+
 /* ----- анимации -----  */
 
 

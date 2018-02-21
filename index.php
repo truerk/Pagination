@@ -107,7 +107,24 @@
         <button id="btn_add1" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
       </div>      
+
+
+      <div class="task-header-container"> 
+        <div class="add-content">
+            <div class="task-header"> 
+              <input class="add-input" id="task_name" name="task_name" type="text" placeholder="Наименование">
+              <button id="btn_add" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>             
+        </div>
+        <div class="add-button">  
+            <button id="open-add">Тыкаешь и всплывает добавление</button>
+        </div>      
+      </div>
+
+
+        <br><br>
       <button id="open1">Добавление через модалку</button> 
+
       <div class="task-body">
         <div class="task_null">На этой страничке кончились задачки:)</div>
 
@@ -223,8 +240,8 @@
   <div id="dialog1" class="dialog-container">  
     <div class="dialog">
       <div class="task-header">
-        <input class="add-input" id="task_name" name="task_name" type="text" placeholder="Наименование">
-        <button id="btn_add" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>  
+        <input class="add-input" id="task_name1" name="task_name" type="text" placeholder="Наименование">
+        <button id="btn_add1" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>  
       </div>
       <p>первое</p>
       <button id="close1">Закрыть</button>
@@ -251,6 +268,24 @@
 <script src="js/jquery.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
+
+
+  /* ---- всплывающее добавление ---- */
+    $('#open-add').on('click', function(){
+      $(this).css('display', 'none');
+      $('.add-content').css('animation', 'add-content-open 1s ease-in-out');
+      $('.add-content').css('display', 'block');
+    });
+
+    $('#btn_add').on('click', function(){
+      
+      $('.add-content').css('animation', 'add-content-close 1s ease-in-out');
+      setTimeout(function(){
+          $('.add-content').css('display', 'none');
+          $('#open-add').css('display', 'block');
+      }, 1000);
+      
+    });
 
 
   /* ------- модальное окно ---------- */

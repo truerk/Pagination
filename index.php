@@ -41,166 +41,55 @@
 
   ?>
 
-  <div class="task-page-content">
-
-  <?php
-
-  /*for ($i=1; $i < $page_count+1; $i++) {
-
-    if ($i == $page_nom) {//если страница равна кнопке
-
-        if ($i == 1) { 
-          $left1 = $i + 1;
-          $left2 = $i + 2;
-          $right1 = $i + 3;
-          $right2 = $i + 4;
-        ?>
-          <span><?=$i?></span>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$left1?>' disabled><?=$left1?></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$left2?>' disabled><?=$left2?></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$right1?>' disabled><?=$right1?></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$right2?>' disabled><?=$right2?></a>
-
-        <?php }else{
-          $left1 = $i - 2;
-          $left2 = $i - 1;
-          $right1 = $i + 1;
-          $right2 = $i + 2;
-        ?>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$left1?>' disabled><?=$left1?></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$left2?>' disabled><?=$left2?></a>
-          <span><?=$i?></span>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$right1?>' disabled><?=$right1?></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$right2?>' disabled><?=$right2?></a>
-        <?php } ?>
-
-         
-        
-      
-      
-    <?php break; 
-    } 
-  } */
-
-
+  <div class="task-page-content" style="display: none;">
+<?php
   for ($i=1; $i < $page_count+1; $i++) {     
     if ($i == $page_nom) {
       if ($i == 1) {
-        $next = $i + 1; ?>
-        <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
-        <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
-        <span><?=$i?></span>
-        <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-        <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-     <?php }else if ($page_count > 1) {
+        if ($page_count == 1) {
+          if ($page_count > 1) {
+            $next = $i + 1; ?>
+    <?php }else{ ?>
+            <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+            <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+            <span><?=$i?></span>
+            <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+            <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+    <?php } 
+        }else{
+          $next = $i + 1; ?>
+          <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+          <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+          <span><?=$i?></span>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><?=$next?></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+  <?php } ?>
+<?php }else if ($page_count > 1) {
         if ($i == $page_count) {
           $back = $i - 1; ?>
           <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><?=$back?></a>
           <span><?=$i?></span>
           <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
           <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
-       <?php }else{ 
+  <?php }else{
           $back = $i - 1;
-          $next = $i + 1; ?>
+          $back2 = $i - 2;
+          $next = $i + 1;
+          $next2 = $i + 2; ?>
           <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><?=$back?></a>
           <span><?=$i?></span>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><?=$next?></a>
           <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-       <?php }
+  <?php }
       }
     }
   }
 
-  /*for ($i=1; $i < $page_count+1; $i++) {
-    
-
-    if ($i == $page_nom) {//если страница равна кнопке
-
-      if ($i == 1) { 
-        $right1 = $i + 1;
-        ?>
-        <span><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
-        <span><?=$i?></span>
-        <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$right1?>' disabled><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-      <?php }else if ($page_count > 1) {
-        if ($i == $page_count) { 
-          $left1 = $i - 1;
-        ?>
-
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$left1?>' disabled><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-          <span><?=$i?></span>
-          <span><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-       <?php }
-      }
-
-         
-          $left1 = $i - 1;
-          $right1 = $i + 1;
-        ?>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$left1?>' disabled><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-          <span><?=$i?></span>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$right1?>' disabled><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-      
-    <?php  
-    } 
-  }*/
-
 ?>
-
   </div>
 
-<?php 
-
-  /*for ($i=1; $i < кол-во страниц + 1; $i++) { 
-
-    if ($i == номер страницы) {
-
-      if ($i == 1) {
-
-        if (кол-во страниц == 1) {
-          выводим выключенную кнопку
-        }else if (кол-во страниц == 2) {
-          выводим выключенную кнопку
-          след кнопка 2
-        }else if (кол-во страниц == 3) {
-          выводим выключенную кнопку
-          след кнопка 2
-          след кнопка 3
-        }else if (кол-во страниц == 4) {
-          выводим выключенную кнопку
-          след кнопка 2
-          след кнопка 3
-          след кнопка 4
-        }else if (кол-во страниц == 5) {
-          выводим выключенную кнопку
-          след кнопка 2
-          след кнопка 3
-          след кнопка 4
-          след кнопка 5
-        }
-
-      }else if ($i == 2) {
-        
-        if (кол-во страниц == 2) {
-          пред кнопка 1
-          выводим выключенную кнопку
-        }
-
-
-
-      }
-      
-    }
-
-  }*/
-
-
-
-
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -236,6 +125,55 @@
     </div>
     <div class="task-page-container">
       <div class="task-page-content">
+        <?php
+          for ($i=1; $i < $page_count+1; $i++) {     
+            if ($i == $page_nom) {
+              if ($i == 1) {
+                if ($page_count == 1) {
+                  if ($page_count > 1) {
+                    $next = $i + 1; ?>
+            <?php }else{ ?>
+                    <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                    <span><?=$i?></span>
+                    <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+            <?php } 
+                }else{
+                  $next = $i + 1; ?>
+                  <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                  <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                  <span><?=$i?></span>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><?=$next?></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+          <?php } ?>
+        <?php }else if ($page_count > 1) {
+                if ($i == $page_count) {
+                  $back = $i - 1; ?>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><?=$back?></a>
+                  <span><?=$i?></span>
+                  <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                  <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+          <?php }else{
+                  $back = $i - 1;
+                  $back2 = $i - 2;
+                  $next = $i + 1;
+                  $next2 = $i + 2; ?>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><?=$back?></a>
+                  <span><?=$i?></span>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><?=$next?></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+          <?php }
+              }
+            }
+          }
+        ?>
+      </div>
+    </div>
+    <div class="task-page-container">
+      <div class="task-page-content">
         <?php for ($i=1; $i < $page_count+1; $i++) {     
           if ($i == $page_nom) {
             if ($i == 1) {
@@ -267,8 +205,7 @@
         } ?>
       </div>
     </div>
-    <div class="task-page-container">
-      
+    <div class="task-page-container">      
       <div class="task-page-content">
         <? for ($i=1; $i < $page_count+1; $i++) {
             if ($i  == $page_nom) { 

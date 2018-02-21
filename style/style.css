@@ -216,7 +216,9 @@ html {
 }
 .task-page-content a{
   margin-left: 15px;
-  padding: 5px 8px;
+  padding: 5px;
+  width: 32px;
+  text-align: center;
   border-radius: 5px;
   box-shadow: inset 0px 0px 15px 0px #448ECC;
   background-color: #78AFDA;
@@ -228,7 +230,9 @@ html {
 
 .task-page-content span{
   margin-left: 15px;
-  padding: 5px 8px;
+  padding: 5px;
+  width: 32px;
+  text-align: center;
   border-radius: 5px;
   background-color: #448ECC;
   color: #fff;

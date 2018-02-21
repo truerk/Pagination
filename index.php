@@ -103,10 +103,11 @@
   <div class="task-main">
     <div class="task-content">
       <div class="task-header">
-        <input class="add-input" id="task_name" name="task_name" type="text" placeholder="Наименование">
-        <button id="btn_add" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>  
-      </div>      
+        <input class="add-input" id="task_name1" name="task_name" type="text" placeholder="Наименование">
+        <button id="btn_add1" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
+      </div>      
+      <button id="open1">Добавление через модалку</button> 
       <div class="task-body">
         <div class="task_null">На этой страничке кончились задачки:)</div>
 
@@ -221,6 +222,10 @@
     
   <div id="dialog1" class="dialog-container">  
     <div class="dialog">
+      <div class="task-header">
+        <input class="add-input" id="task_name" name="task_name" type="text" placeholder="Наименование">
+        <button id="btn_add" class="add" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>  
+      </div>
       <p>первое</p>
       <button id="close1">Закрыть</button>
     </div>
@@ -240,7 +245,7 @@
 
   
   
-  <button id="open1">Открыть 1</button>
+  
   <button id="open2">Открыть 2</button>
 
 <script src="js/jquery.js"></script>

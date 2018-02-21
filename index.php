@@ -83,34 +83,34 @@
   } */
 
 
-  for ($i=1; $i < $page_count+1; $i++) { 
-    
+  for ($i=1; $i < $page_count+1; $i++) {     
     if ($i == $page_nom) {
-
       if ($i == 1) {
         $next = $i + 1; ?>
-        <span><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+        <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+        <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
         <span><?=$i?></span>
-        <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
      <?php }else if ($page_count > 1) {
-
         if ($i == $page_count) {
           $back = $i - 1; ?>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
           <span><?=$i?></span>
-          <span><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+          <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+          <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
        <?php }else{ 
           $back = $i - 1;
           $next = $i + 1; ?>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
           <span><?=$i?></span>
-          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+          <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
        <?php }
-
       }
-
     }
-
   }
 
   /*for ($i=1; $i < $page_count+1; $i++) {
@@ -235,6 +235,40 @@
       </div>
     </div>
     <div class="task-page-container">
+      <div class="task-page-content">
+        <?php for ($i=1; $i < $page_count+1; $i++) {     
+          if ($i == $page_nom) {
+            if ($i == 1) {
+              $next = $i + 1; ?>
+              <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+              <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+              <span><?=$i?></span>
+              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+           <?php }else if ($page_count > 1) {
+              if ($i == $page_count) {
+                $back = $i - 1; ?>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                <span><?=$i?></span>
+                <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+             <?php }else{ 
+                $back = $i - 1;
+                $next = $i + 1; ?>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                <span><?=$i?></span>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+             <?php }
+            }
+          }
+        } ?>
+      </div>
+    </div>
+    <div class="task-page-container">
+      
       <div class="task-page-content">
         <? for ($i=1; $i < $page_count+1; $i++) {
             if ($i  == $page_nom) { 

@@ -144,14 +144,14 @@
                   <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
                   <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
                   <span><?=$i?></span>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><?=$next?></a>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>'><?=$next?></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>'><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
           <?php } ?>
         <?php }else if ($page_count > 1) {
                 if ($i == $page_count) {
                   $back = $i - 1; ?>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><?=$back?></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>'><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>'><?=$back?></a>
                   <span><?=$i?></span>
                   <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                   <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
@@ -160,11 +160,11 @@
                   $back2 = $i - 2;
                   $next = $i + 1;
                   $next2 = $i + 2; ?>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><?=$back?></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>'><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>'><?=$back?></a>
                   <span><?=$i?></span>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><?=$next?></a>
-                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>'><?=$next?></a>
+                  <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>'><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
           <?php }
               }
             }
@@ -181,24 +181,24 @@
               <span><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
               <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
               <span><?=$i?></span>
-              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>'><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>'><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
            <?php }else if ($page_count > 1) {
               if ($i == $page_count) {
                 $back = $i - 1; ?>
-                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>'><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                 <span><?=$i?></span>
                 <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                 <span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
              <?php }else{ 
                 $back = $i - 1;
                 $next = $i + 1; ?>
-                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>' disabled><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>' disabled><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=1?>'><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$back?>'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                 <span><?=$i?></span>
-                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>' disabled><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>' disabled><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$next?>'><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <a href='<?php echo $_SERVER['PHP_SELF']?>?page=<?=$page_count?>'><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
              <?php }
             }
           }
@@ -218,11 +218,92 @@
     </div>
   </div>
 
+    
+  <div id="dialog1" class="dialog-container">  
+    <div class="dialog">
+      <p>первое</p>
+      <button id="close1">Закрыть</button>
+    </div>
+  </div>
+
+  <div id="dialog2" class="dialog-container">  
+    <div class="dialog">
+      <p>второе</p>
+      <button id="close2">Закрыть</button>
+    </div>
+  </div>
+
+  <div class="dialog-fon">
+  </div>
+
+
+
+  
+  
+  <button id="open1">Открыть 1</button>
+  <button id="open2">Открыть 2</button>
+
 <script src="js/jquery.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
 
-    /* -- проверяем на наличие тасок --- */
+
+  /* ------- модальное окно ---------- */
+
+    /*setTimeout(function(){
+        $('.dialog-fon').css('display','none');  
+      },1000);*/
+
+    /* ----- первое ----- */
+    $('#open1').on('click', function(){
+      $('.dialog-fon').css('display','block');
+      $('#dialog1').css("animation", "modal_open 0.5s ease-in-out");
+      $('#dialog1').css('display','block');
+    });
+
+    $('.dialog-fon').on('click', function(){       
+      $('#dialog1').css("animation", "modal_close 0.5s ease-in-out");
+      setTimeout(function(){
+        $('#dialog1').css('display','none');
+        $('.dialog-fon').css('display','none'); 
+      }, 500); 
+    });
+
+    $('#close1').on('click', function(){
+      $('#dialog1').css("animation", "modal_close 0.5s ease-in-out");
+      setTimeout(function(){
+        $('#dialog1').css('display','none');
+        $('.dialog-fon').css('display','none'); 
+      }, 500);
+    });
+
+
+    /* ----- Второе ----- */
+   $('#open2').on('click', function(){
+      $('.dialog-fon').css('display','block');
+      $('#dialog2').css("animation", "modal_open 0.5s ease-in-out");
+      $('#dialog2').css('display','block');
+    });
+
+    $('.dialog-fon').on('click', function(){       
+      $('#dialog2').css("animation", "modal_close 0.5s ease-in-out");
+      setTimeout(function(){
+        $('#dialog2').css('display','none');
+        $('.dialog-fon').css('display','none'); 
+      }, 500); 
+    });
+
+    $('#close2').on('click', function(){
+      $('#dialog2').css("animation", "modal_close 0.5s ease-in-out");
+      setTimeout(function(){
+        $('#dialog2').css('display','none');
+        $('.dialog-fon').css('display','none'); 
+      }, 500);
+    });
+
+
+
+  /* -- проверяем на наличие тасок --- */
     function check_list(){
       var task_count = $('.task-container').length;
       if (task_count > 0) {

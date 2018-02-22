@@ -404,3 +404,128 @@ html {
 }
 
 
+/* --- подгрузка доков --- */
+
+.loadfile{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadfile button{
+  margin-right: 25px;
+}
+
+
+
+
+
+
+/* ---- jspractice --- */
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+
+/* --- модальные --- */
+.modal-fone{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: none;
+}
+
+.modal-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 200px;
+  margin-left: -150px;
+  margin-top: -250px;
+  background-color: #fff;
+  z-index: 500;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  color: #505050;
+  display: none;
+}
+
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+
+/* --- вкладки ---*/
+.tab-btn{
+  display: flex;
+  height: 15%;
+}
+
+.btn-tab{
+  flex-grow: 1;
+  border: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #EEEEEE;
+  outline: none;
+  box-shadow: inset 0 0 5px 0 #E1E1E1;  
+}
+.btn-tab:hover{
+  cursor: pointer;
+}
+.btn-tab:active{
+  box-shadow: inset 0 0 5px 0 #C0C0C0;
+}
+
+.btn-tab-active{
+  border: none;
+  background-color: #d9d9d9;
+  box-shadow: inset 0 0 5px 0 #B0B0B0;
+}
+.btn-tab-active:active{
+  box-shadow: inset 0 0 5px 0 #909090;
+}
+
+.tab-content{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d9d9d9;
+  border-top: none;
+}
+
+
+
+
+@keyframes modal-open{
+  from{
+    margin-top: -220px;
+    opacity: 0;
+  }
+  to{
+    margin-top: -250px;
+    opacity: 1;
+  }
+}
+
+@keyframes modal-close{
+  form{
+    margin-top: -250px;
+    opacity: 1;
+  }
+  to{
+    margin-top: -220px;
+    opacity: 0;
+  }
+}

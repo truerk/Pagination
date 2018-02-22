@@ -249,8 +249,13 @@
   </div>
 
   <div id="dialog2" class="dialog-container">  
-    <div class="dialog">
+    <div class="dialog" id="dialog228">
       <p>второе</p>
+      <form id="formac">
+        <input type="text" name="alerta" id="alertaa">
+        <button id="ajax2" type="submit">Сообщение</button>
+      </form>
+      <input type="text" class="error">
       <button id="close2">Закрыть</button>
     </div>
   </div>
@@ -258,16 +263,43 @@
   <div class="dialog-fon">
   </div>
 
+  <?php echo $_GET['alerta']; ?>
 
 
+  <div>
+      <button id="open2">Открыть 2</button>
+    </div>
   
   
-  
-  <button id="open2">Открыть 2</button>
+    
+  <a href="jspractice.php">practice</a>
 
 <script src="js/jquery.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
+
+
+    /* --- удаляение гет в url --- */
+    var newURL = location.href.split("?")[0];
+    window.history.pushState('object', document.title, newURL);
+
+
+    /* --- тест формы в модалке -- */
+  $('#ajax2').on('click', function(){
+    var parent = $(this).parent();//для удаления
+    var parpar = this.parentNode.parentNode.id;//род контейнер
+    var form_id = this.parentNode.id;//для получения значений в форме
+    var alerta = $('#' + form_id + ' input').val();    
+    //parent.remove(); 
+    
+    if (alerta == '') {
+      $('#' + parpar + ' .error').val('пусто');
+      return false;
+    }else{
+      //history.pushState(null, null, "?alert123=" + alerta);
+      return true;
+    } 
+  });
 
 
   /* ---- всплывающее добавление ---- */
@@ -425,7 +457,8 @@
     /* -- удаление тасок --- */
     function add_delete(){
       $('.delete').on('click', function(){
-        var containter = $(this).parent();//attr('id')//получаем род контейнер
+        var containter = $(this).parent();//attr('id')//получаем род контейнер 
+        alert($(this).attr)
         var task_id = this.parentNode.id;
         $.ajax({
           type: 'POST',
@@ -545,6 +578,14 @@
     });
 
     /* ----- комментари для js ------------
+
+    var newURL = location.href.split("?")[0];
+    window.history.pushState('object', document.title, newURL);
+
+    var parent = $(this).parent();//для удаления
+    var parpar = this.parentNode.parentNode.id;//род контейнер
+    var form_id = this.parentNode.id;//для получения значений в форме
+    //history.pushState(null, null, "?alert123=" + alerta);
 
     task_body.append('<div class="task-container" id='+ json.id +'><input type="text" class="task-label" value="' + task_name + '" readonly><textarea class="task-label" readonly>' + task_name + '</textarea>' + 
     '<button class="update"><i class="fa fa-pencil" aria-hidden="true"></i></button>' +

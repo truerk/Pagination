@@ -95,11 +95,78 @@
   </div>
 
 
+
+  <div class="folder-body">
+    <div id="folder-1" class="folder-container">
+        <div class="folder-content">
+            <div class="folder">123</div> 
+            <div class="setting">qwe</div>
+        </div>
+        <div class="setting-drop">
+           <a href="#" class="open">folder-1</a>
+           <a href="#">2</a>
+           <a href="#">3</a>
+           <a href="#">4</a>
+        </div> 
+      </div>
+
+      <div id="folder-2" class="folder-container">
+        <div class="folder-content">
+            <div class="folder">123</div> 
+            <div class="setting">qwe</div>
+        </div>
+        <div class="setting-drop">
+           <a href="#" class="open">folder-2</a>
+           <a href="#">2</a>
+           <a href="#">3</a>
+           <a href="#">4</a>
+        </div> 
+      </div>
+  </div>
+
+      
+
+  <div class="drop-fon"></div>
   
 
 
 <script src="js/jquery.js"></script>
 <script type="text/javascript"> 
+
+
+  /* ---- менюшка ---- */
+
+  $('.setting').on('click', function(){
+      var drop = $(this).parent().parent().attr('id');
+      var check = 0;      
+      $('.drop-fon').css('display', 'block');
+      $('#' + drop + ' .setting-drop').css('animation', 'drop-fadein .25s ease-in-out');
+
+      setTimeout(function(){
+        $('#' + drop + ' .setting-drop').css('display', 'flex');        
+        setTimeout(function(){
+          $('#' + drop + ' .setting-drop').css('overflow', 'visible');
+        },250);
+      }, 250); 
+      $('#' + drop + ' .open').on('click', function(){
+        if (check > 0) {
+          return false;
+        }
+        check = check + 1;
+        $('.drop-fon').css('display', 'none');
+        $('.setting-drop').css('overflow', 'hidden');
+        $('.setting-drop').css('display', 'none');
+      });
+
+    });
+
+  $('.drop-fon').on('click', function(){
+    $('.drop-fon').css('display', 'none');
+    $('.setting-drop').css('overflow', 'hidden');
+    $('.setting-drop').css('display', 'none');
+  });
+
+
 
   /*  
   

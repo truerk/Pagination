@@ -529,3 +529,92 @@ html {
     opacity: 0;
   }
 }
+
+
+
+/* --- менюшка ---- */
+.folder-body{
+  display: flex;
+}
+
+.folder-container{
+  width: 150px;
+  display: flex;
+  margin-left: 10px;
+}
+
+.folder-content{
+  display: flex;  
+}
+
+.folder{
+  position: relative;
+  width: 150px;
+  height: 100px;
+  background-color: red;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.setting{
+  position: relative;
+  width: 25px;
+  height: 20px;
+  right: 25px;  
+  background-color: blue;
+  z-index: 3;
+}
+
+.setting-drop{
+  position: absolute; 
+  flex-direction: column;
+  width: 80px;
+  margin-top: 25px;
+  margin-left: 100px;
+  background-color: #F9F9F9;
+  /*border: 1px solid #B8B8B8;*/
+  box-shadow: 0px 2px 5px 0px gray;
+  text-align: center;
+  z-index: 11;
+  height: 105px;
+  display: none;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.setting-drop::after{
+  content: '';
+  position: absolute;
+  margin-top: -10px;
+  margin-left: 40%;
+  border: 5px solid transparent;
+  border-bottom: 5px solid #F9F9F9;
+}
+
+.setting-drop a + a{
+  margin-top: 10px;
+}
+
+.drop-fon{
+  /*background-color: rgba(250,250,250, 0.9);*/
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  display: none;
+}
+
+@keyframes drop-fadein{
+  from{
+    opacity: 0;
+    height: 0;
+
+  }
+  to{    
+    opacity: 1;
+    height: 105px;
+  }
+}

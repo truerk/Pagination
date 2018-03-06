@@ -124,14 +124,45 @@
       </div>
   </div>
 
-      
+  <div class="center">
+    <button id="menu-open"><</button>
+  </div>
 
   <div class="drop-fon"></div>
+
+  
+
+  <div class="menu-container">    
+    <div class="menu-fon"></div>
+    <div class="menu-content">
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+    </div>
+  </div>
+  
   
 
 
 <script src="js/jquery.js"></script>
 <script type="text/javascript"> 
+
+  /* --- менюшка справа --- */
+  $('#menu-open').click(function(){
+    $('.menu-container').fadeIn(function(){
+      $('.menu-container').css('display','flex');
+    });    
+    $('.menu-content').css('animation','menu-open 1s ease-in-out');
+  });
+
+  $('.menu-fon').click(function(){
+    $('.menu-content').css('animation','menu-close 1s ease-in-out');
+      $('.menu-container').fadeOut(function(){
+        $('.menu-container').css('display','none');
+      }); 
+  });
 
 
   /* ---- менюшка ---- */
